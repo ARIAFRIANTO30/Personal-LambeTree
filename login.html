@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in to your account | Linktree Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login-style.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-card">
+            
+            <div class="logo-container">
+                <span style="background: #252422; color: white; padding: 4px 8px; border-radius: 6px; font-size: 20px;">▲</span> Lambetree
+            </div>
+
+            <h1 class="heading" id="formTitle">Welcome back</h1>
+            <p class="subheading" id="formSubtitle">Log in to your Lambe Official account.</p>
+
+            <form id="authForm">
+                <div class="input-wrapper">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="Password (min. 6 karakter)" required>
+                </div>
+
+                <button type="submit" class="btn-primary" id="authBtn">Log in</button>
+            </form>
+
+            <div class="footer-links">
+                <a href="#">Forgot password?</a>
+                <a href="#">Log in with phone number</a>
+            </div>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <div class="social-login">
+                <button class="btn-social" type="button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google"> Continue with Google
+                </button>
+            </div>
+
+            <div class="signup-link">
+                <span id="toggleText">Don't have an account?</span> 
+                <a href="#" id="toggleMode">Sign up</a>
+                <br><br>
+                <a href="index.html" style="color: #676B5F; text-decoration: none; font-size: 13px;">← Balik ke Halaman Utama</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

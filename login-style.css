@@ -1,0 +1,217 @@
+/* ============================================================== */
+/* KODINGAN LOGIN LINKTREE CLONE GUE (VERSI BACKGROUND PARALLAX)  */
+/* ============================================================== */
+
+/* 1. Bersihin dosa bawaan browser biar ga rewel, sekalian gue pasang font Inter kesayangan. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 2. Settingan Background Utama. Ini nih yang bikin web gue keliatan mahal. */
+body {
+    background-color: #ffffff;
+    color: #252422; /* Hitamnya gue bikin agak pudar dikit biar mata user ga sakit */
+    
+    /* Nyomot gambar estetik dari unsplash, nanti bisa gue ganti kalau bosen */
+    background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    
+    /* INI TRIK RAHASIA GUE! Kunci background biar anteng pas di-scroll (Parallax effect coy) */
+    background-attachment: fixed; 
+    
+    /* Posisikan kotak login pas di tengah-tengah layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Biar pinggirannya ga nabrak layar pas gue buka di HP */
+}
+
+/* 3. Kotak Putih Sakral Tempat Gue Login */
+.login-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px; /* Mentok gedenya segini aja, jangan maruk */
+    padding: 40px 30px;
+    border-radius: 24px; /* Ujungnya gue bikin melengkung estetik ala UI masa kini */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Kasih bayangan tipis biar seolah-olah ngambang */
+    text-align: center;
+    
+    /* JURUS ANDALAN GUE: */
+    /* Biar kotaknya ga kepanjangan nabrak layar, gue batesin mentok 90% aja. */
+    /* Kalau isi formnya nambah banyak, dia bakal otomatis bikin scroll di dalem kotak. Mantap! */
+    max-height: 90vh; 
+    overflow-y: auto; 
+    
+    animation: slideIn 0.5s ease; /* Panggil animasi pas baru buka web */
+}
+
+/* Animasi nongol dari bawah ke atas pas web di-refresh biar ga kaku banget */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. Bagian Logo dan Tulisan di Atas */
+.logo-container {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px; /* Hurufnya gue rapetin dikit biar persis Linktree asli */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Jarak antara icon logo sama tulisan */
+}
+
+.heading {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+    color: #252422;
+}
+
+.subheading {
+    font-size: 15px;
+    color: #676B5F; /* Warnanya gue bikin abu-abu biar kalah pamor sama judul utama */
+    margin-bottom: 32px;
+}
+
+/* 5. Area Kolom Ngetik (Input Form) */
+.input-wrapper {
+    margin-bottom: 16px;
+    text-align: left; /* Tulisannya mulai dari kiri ya, jangan alay di tengah */
+}
+
+/* Baju awal pas kolom ngetik belum disentuh */
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    background-color: #F5F6F8; /* Abu-abu kalem */
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    outline: none; /* Ilangin garis biru bawaan browser yang norak */
+}
+
+/* Pas kolom ngetik di-klik (fokus), warnanya berubah putih & garis pinggirnya item tegas */
+.input-wrapper input:focus {
+    border-color: #252422;
+    background-color: #ffffff;
+}
+
+/* 6. Tombol Hitam Utama (Log in) */
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 30px; /* Melengkung parah kayak kapsul (Pill button) */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Transisi warna pas gue hover */
+    margin-top: 8px;
+}
+
+/* Pas mouse gue taruh di atas tombol, warnanya agak pudar dikit */
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+/* 7. Link printilan di bawah form (Lupa Password, dll) */
+.footer-links {
+    text-align: center;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #676B5F;
+    text-decoration: underline; /* Biar jelas kalau ini bisa diklik */
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+/* Pas di-hover linknya berubah item */
+.footer-links a:hover {
+    color: #252422;
+}
+
+/* 8. Garis Pemisah (tulisan "OR" di tengah-tengah) */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    color: #676B5F;
+    font-size: 12px;
+}
+
+/* Ini trik CSS dewa yang gue pake, biar garisnya otomatis ngapit di kiri & kanan tulisan */
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EBECEF;
+}
+
+/* Jarak biar garisnya ga nyundul tulisan OR-nya */
+.divider span {
+    padding: 0 15px;
+}
+
+/* 9. Tombol Sosmed (Google & Apple) */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Jarak antara logo google sama tulisan */
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: white;
+    color: #252422;
+    border: 1px solid #EBECEF;
+    border-radius: 30px; /* Kapsul juga */
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Ngecilin ukuran logo sosmednya biar ga jomplang sama teks */
+.btn-social img {
+    width: 18px;
+}
+
+.btn-social:hover {
+    background-color: #F5F6F8;
+}
+
+/* 10. Link Balik ke Beranda di Paling Bawah */
+.signup-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #676B5F;
+}
+
+.signup-link a {
+    color: #000000;
+    font-weight: 600;
+    text-decoration: underline;
+}

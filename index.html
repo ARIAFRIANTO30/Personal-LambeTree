@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambetree | Official Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background: linear-gradient(180deg, #F09344 0%, #E8B45A 100%); 
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 16px; color: white;
+        }
+
+        .container { width: 100%; max-width: 580px; display: flex; flex-direction: column; align-items: center; }
+
+        /* PROFILE */
+        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .name { font-size: 20px; font-weight: 800; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .bio { font-size: 14px; font-weight: 600; text-align: center; margin-bottom: 32px; line-height: 1.5; opacity: 0.95; }
+
+        /* LINKS - ANTI KETIBA */
+        #pubLinks { width: 100%; display: flex; flex-direction: column; gap: 14px; }
+        
+        .link-item { 
+            background: #FFFFFF; color: #252422; padding: 14px 20px; border-radius: 30px;
+            text-decoration: none; display: flex; align-items: center; justify-content: space-between; 
+            transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); min-height: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .link-item:hover { transform: scale(1.02); background: #fdfdfd; }
+
+        .icon-box { width: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .icon-box i { font-size: 22px; }
+
+        .text-box { flex: 1; padding: 0 10px; text-align: center; min-width: 0; }
+        .text-box span { display: block; font-size: 15px; font-weight: 700; line-height: 1.2; word-wrap: break-word; color: #252422; }
+
+        .more-box { width: 40px; display: flex; justify-content: flex-end; flex-shrink: 0; color: #D1D5DB; }
+
+        /* FOOTER */
+        .footer { margin-top: auto; padding-top: 50px; text-align: center; }
+        .btn-login { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(0,0,0,0.1); border-radius: 20px; color: white; text-decoration: none; font-size: 11px; font-weight: 800; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .btn-login:hover { background: #252422; border-color: #252422; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="pubImg" src="img/Logo_Saya.png" class="avatar">
+        <h1 id="pubName" class="name">Loading...</h1>
+        <p id="pubBio" class="bio"></p>
+
+        <div id="pubLinks"></div>
+
+        <div class="footer">
+            <a href="login.html" class="btn-login">ADMIN LOGIN</a>
+            <p style="font-size: 11px; font-weight: 800; opacity: 0.7; letter-spacing: 2px;">LAMBETREE</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, collection, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmt9ogq6y5K9M6O8UYXwVFR7uVjXzMN_w",
+            authDomain: "link-tree-project-26581.firebaseapp.com",
+            projectId: "link-tree-project-26581",
+            storageBucket: "link-tree-project-26581.firebasestorage.app",
+            messagingSenderId: "835043240980",
+            appId: "1:835043240980:web:a0efb8920eee7128628b01"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        onSnapshot(doc(db, "profile", "main"), (s) => {
+            if(s.exists()){
+                const d = s.data();
+                document.getElementById('pubName').innerText = d.name || "User";
+                document.getElementById('pubBio').innerText = d.bio || "";
+                if(d.imgUrl) document.getElementById('pubImg').src = d.imgUrl;
+            }
+        });
+
+        onSnapshot(query(collection(db, "links"), orderBy("createdAt", "desc")), (snapshot) => {
+            const container = document.getElementById('pubLinks');
+            let html = "";
+            snapshot.forEach((linkDoc) => {
+                const data = linkDoc.data();
+                const iconHtml = getIcon(data.title);
+                html += `
+                    <a href="${data.url}" target="_blank" class="link-item">
+                        <div class="icon-box">${iconHtml}</div>
+                        <div class="text-box"><span>${data.title}</span></div>
+                        <div class="more-box"><i class="fas fa-ellipsis"></i></div>
+                    </a>`;
+            });
+            container.innerHTML = html;
+        });
+
+        function getIcon(title) {
+            const t = title.toLowerCase();
+            if (t.includes('shopee')) return '<i class="fas fa-shopping-bag" style="color: #EE4D2D;"></i>';
+            if (t.includes('tokopedia') || t.includes('tokped')) return '<i class="fas fa-shopping-cart" style="color: #42B549;"></i>';
+            if (t.includes('whatsapp') || t.includes('wa')) return '<i class="fab fa-whatsapp" style="color: #25D366;"></i>';
+            if (t.includes('instagram') || t.includes('ig')) return '<i class="fab fa-instagram" style="color: #E4405F;"></i>';
+            if (t.includes('facebook') || t.includes('fb')) return '<i class="fab fa-facebook" style="color: #1877F2;"></i>';
+            if (t.includes('tiktok')) return '<i class="fab fa-tiktok" style="color: #000;"></i>';
+            if (t.includes('youtube') || t.includes('yt')) return '<i class="fab fa-youtube" style="color: #FF0000;"></i>';
+            if (t.includes('github')) return '<i class="fab fa-github" style="color: #333;"></i>';
+            return '<i class="fas fa-link" style="color: #6B7280;"></i>';
+        }
+    </script>
+</body>
+</html>

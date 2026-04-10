@@ -1,0 +1,232 @@
+/* ============================================================== */
+/* GAYA HALAMAN DEPAN ALA LINKTREE SHOP ASLI (MOBILE OPTIMIZED)   */
+/* ============================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #F3F3F1; 
+    color: #252422; 
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 20px; /* Padding pinggir agak dilegain buat HP */
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 680px; 
+    padding: 50px 0 40px 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.8s ease; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -- FOTO PROFIL & BIO -- */
+.profile-header {
+    text-align: center;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.profile-img {
+    width: 96px; /* Dikecilin dikit biar proporsional di HP */
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 16px;
+    border: 2px solid rgba(0,0,0,0.05); 
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+    color: #252422;
+}
+
+.profile-bio {
+    font-size: 15px;
+    font-weight: 400;
+    color: #43463F; 
+    line-height: 1.5;
+    padding: 0 10px; /* Biar bio ga nabrak mentok pinggir layar */
+}
+
+/* -- JEJERAN TOMBOL LINK -- */
+.link-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.link-btn {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #252422;
+    padding: 16px 40px; /* Padding kiri-kanan digedein biar teks ga nimpa icon */
+    border-radius: 30px; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); 
+    border: 1px solid rgba(0,0,0,0.02);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.link-btn:hover {
+    transform: scale(1.015);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.link-icon {
+    position: absolute;
+    left: 20px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 20px;
+}
+
+/* -- KOTAK SUBSCRIBE EMAIL (LEAD MAGNET) -- */
+.subscribe-card {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 24px 20px; /* Padding disesuaikan buat HP */
+    border-radius: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.subscribe-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+}
+
+.subscribe-card p {
+    font-size: 14px;
+    color: #676B5F;
+    margin-bottom: 20px;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.subscribe-form input {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #EBECEF;
+    background-color: #F5F6F8;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+.subscribe-form input:focus {
+    border-color: #252422;
+    background-color: #FFFFFF;
+}
+
+.subscribe-form button {
+    padding: 14px 24px;
+    background-color: #252422; 
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: inherit;
+    white-space: nowrap; 
+}
+
+.subscribe-form button:hover {
+    background-color: #000000;
+}
+
+.success-msg {
+    color: #10B981 !important; 
+    font-weight: 600;
+    margin-top: 16px !important;
+    margin-bottom: 0 !important;
+}
+
+/* -- PINTU RAHASIA DI BAWAH -- */
+.footer {
+    margin-top: auto;
+    cursor: pointer; 
+    padding: 10px 0 30px 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer:hover {
+    opacity: 1;
+}
+
+.linktree-logo {
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #252422;
+    letter-spacing: -0.5px;
+}
+
+/* ============================================================== */
+/* JURUS MEDIA QUERY (KHUSUS LAYAR HP / UKURAN KECIL)             */
+/* ============================================================== */
+@media (max-width: 480px) {
+    /* Kalau layarnya sempit kayak HP, form emailnya dibikin atas-bawah */
+    .subscribe-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .subscribe-form button {
+        width: 100%; /* Tombolnya jadi panjang full ngikutin layar */
+        padding: 16px; /* Dibikin lebih gendut biar gampang dipencet jempol */
+    }
+
+    /* Ukuran font tombol link disesuaikan dikit biar ga kepanjangan turun baris */
+    .link-btn {
+        font-size: 14px;
+        padding: 16px 36px; 
+    }
+
+    .link-icon {
+        font-size: 18px;
+        left: 16px;
+    }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Lambetree Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+    <div class="top-pro-banner">
+        <i class="fas fa-asterisk banner-badge"></i>
+        <span>7 days left in Pro trial</span>
+        <button class="btn-upgrade-pro">Keep Pro access</button>
+    </div>
+
+    <div class="app-wrapper" id="dashboardScreen" style="display:none;">
+        
+        <aside class="sidebar-container">
+            <div class="brand-box">
+                <img src="img/Logo_Saya.png" class="avatar-small">
+                <span class="brand-text">Lambetree</span>
+            </div>
+
+            <nav class="nav-group">
+                <span class="nav-label">My Linktree</span>
+                <a href="#" class="nav-link active"><i class="fas fa-bars-staggered"></i> Links</a>
+                <a href="#" class="nav-link"><i class="fas fa-shop"></i> Shop</a>
+                <a href="#" class="nav-link"><i class="fas fa-palette"></i> Design</a>
+            </nav>
+
+            <nav class="nav-group">
+                <span class="nav-label">Analytics</span>
+                <a href="#" class="nav-link"><i class="fas fa-users"></i> Audience</a>
+                <a href="#" class="nav-link"><i class="fas fa-chart-line"></i> Insights</a>
+            </nav>
+
+            <div style="margin-top: auto;">
+                <a href="#" class="nav-link" onclick="logoutBos()" style="color: #EF4444;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="editor-workspace">
+            <div class="editor-inner">
+                
+                <header class="workspace-header">
+                    <h1>Links</h1>
+                    <button class="btn-util"><i class="fas fa-wand-magic-sparkles"></i> Enhance</button>
+                </header>
+
+                <section class="profile-banner">
+                    <img id="previewImg" src="img/Logo_Saya.png" class="banner-avatar">
+                    <div class="banner-info">
+                        <h3 id="dispName">Lambe Official Shop</h3>
+                        <p id="dispBio">Discover one-of-a-kind designs that bring people together...</p>
+                    </div>
+                    <div class="profile-actions">
+                        <i class="fas fa-pen" onclick="toggleProfileEdit()"></i>
+                    </div>
+                </section>
+
+                <button class="btn-add-primary" onclick="toggleLinkForm()"><i class="fas fa-plus"></i> Add Link</button>
+
+                <div id="profileEditForm" class="editor-card" style="display:none; border-color: var(--brand-main);">
+                    <h4 style="margin-bottom:16px; font-size:16px;">Profile Settings</h4>
+                    <input type="text" id="profImg" class="input-modern" placeholder="URL Foto Profil">
+                    <input type="text" id="profName" class="input-modern" placeholder="Nama Tampilan">
+                    <input type="text" id="profBio" class="input-modern" placeholder="Deskripsi Bio Singkat">
+                    <button id="saveProfBtn" class="btn-save-main" style="width:100%;">Simpan Profil</button>
+                </div>
+
+                <div id="linkForm" class="editor-card" style="display:none; border-color: var(--brand-main);">
+                    <input type="hidden" id="editId">
+                    <input type="text" id="linkTitle" class="input-modern" placeholder="Judul Link (Contoh: Tokopedia)">
+                    <input type="text" id="linkUrl" class="input-modern" placeholder="URL (https://...)">
+                    <div class="form-btns">
+                        <button id="saveBtn" class="btn-save-main">Simpan Link</button>
+                        <button onclick="toggleLinkForm()" class="btn-cancel-main">Batal</button>
+                    </div>
+                </div>
+
+                <div id="admin-link-list"></div>
+
+            </div>
+        </main>
+
+        <aside class="preview-panel">
+            <div class="preview-header">
+                <span>linktr.ee/LambeOfficial</span>
+                <i class="fas fa-share-nodes"></i>
+            </div>
+            <div class="phone-mockup">
+                <iframe src="index.html" id="previewIframe"></iframe>
+            </div>
+        </aside>
+
+    </div>
+
+    <div id="toast"><i class="fas fa-check-circle" style="color:#10B981;"></i> <span id="toastMsg">Sukses!</span></div>
+
+    <script type="module" src="js/admin.js"></script>
+    <script>
+        function toggleLinkForm() { const f = document.getElementById('linkForm'); f.style.display = f.style.display === 'none' ? 'block' : 'none'; }
+        function toggleProfileEdit() { const f = document.getElementById('profileEditForm'); f.style.display = f.style.display === 'none' ? 'block' : 'none'; }
+        window.refreshPreview = () => { document.getElementById('previewIframe').contentWindow.location.reload(); }
+    </script>
+</body>
+</html>
