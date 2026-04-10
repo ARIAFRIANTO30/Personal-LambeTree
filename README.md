@@ -26,6 +26,7 @@ Auth: Firebase Authentication.
 
 Icons: Font Awesome 6.0+ Pro Icons.
 
-
-
 Fonts: Inter (Google Fonts).
+
+<img width="855" height="885" alt="2026-04-11 05_19_48-Lambetree _ Official Profile" src="https://github.com/user-attachments/assets/f0546969-f0e4-49c3-a277-d9196dc3d65c" />
+
